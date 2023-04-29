@@ -46,11 +46,11 @@ class TPQueue {
         return n;
     }
     void push(const T& data) {
+        Item* t = head;
+        Item* item = create(data);
         if (isEmpty()) {
             head = tail = create(data);
         } else {
-            Item* t = head;
-            Item* item = create(data);
             while (t && t->data.prior >= data.prior)
                 t = t->next;
             if (!t && head) {// в конец
