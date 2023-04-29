@@ -51,14 +51,12 @@ class TPQueue {
         if (isEmpty()) {
             head = tail = create(data);
         } else {
-            while (t && t->data.prior >= data.prior)
+            while (t && t->DATA.prior >= DATA.prior)
                 t = t->next;
             if (!t && head) {// в конец
                 tail->next = item;
                 tail->next->prev = tail;
                 tail = item;
-            } else if (!t && !head) {// в пустой список
-                head = tail = item;
             } else if (!t->prev) {// в начало
                 t->prev = item;
                 item->next = t;
