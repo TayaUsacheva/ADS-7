@@ -6,13 +6,13 @@
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
-  
-  private:
+
+ private:
       struct Item {
         T DATA;
         Item* next;
         Item* prev;
-    };
+      };
     Item* head = nullptr;
     Item* tail = nullptr;
     TPQueue::Item* create(const T& data) {
@@ -22,12 +22,12 @@ class TPQueue {
         temp->prev = nullptr;
         return temp;
     }
-  
+
  public:
     bool isEmpty() {
       return head == nullptr;
     }
-   T pop() {
+    T pop() {
         if (isEmpty()) {
             throw std::string("It is empty");
         }
@@ -51,7 +51,7 @@ class TPQueue {
         } else {
             Item* t = head;
             Item* item = create(data);
-            while (t && t->DATA.prior >= DATA.prior)
+            while (t && t->data.prior >= data.prior)
                 t = t->next;
             if (!t && head) {// в конец
                 tail->next = item;
