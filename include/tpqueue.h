@@ -1,7 +1,8 @@
 // Copyright 2022 NNTU-CS
 #ifndef INCLUDE_TPQUEUE_H_
 #define INCLUDE_TPQUEUE_H_
-
+#include <iostream>
+#include <string>
 template<typename T>
 class TPQueue {
   // реализация шаблона очереди с приоритетом на связанном списке
@@ -13,16 +14,14 @@ class TPQueue {
     };
     Item* head = nullptr;
     Item* tail = nullptr;
-    
- public:
-     TPQueue::Item* create(const T& data){
+    TPQueue::Item* create(const T& data){
         Item* temp = new Item;
         temp->DATA.ch = data.ch;
         temp->next = nullptr;
         temp->prev = nullptr;
-        temp->DATA.prior = data.*prior;
         return temp;
     }
+ public:
     bool isEmpty() {
         return head == nullptr;
     }
@@ -45,32 +44,30 @@ class TPQueue {
         return n;
     }
     void push(const T& data) {
-        if(isEmpty()){
-            head = tail = create(data)
-        }
-        else{
+        if (isEmpty()) {
+            head = tail = create(data);
+        } else {
             Item* t = head;
             Item* item = create(data);
-            while (t && t->DATA.prior >= DATA.prior)
+            while (t && t->data.prior >= data.prior)
                 t = t->next;
-            if (!t && head) { // в конец
+            if (!t && head) {// в конец
                 tail->next = item;
                 tail->next->prev = tail;
                 tail = item;
             } else if (!t && !head) {// в пустой список
                 head = tail = item;
-            } else if (!t->prev) { // в начало
+            } else if (!t->prev) {// в начало
                 t->prev = item;
                 item->next = t;
                 head = item;
-            } else { // в середину
+            } else {// в середину
                 t->prev->next = item;
                 item->prev = t->prev;
                 item->next = t;
                 t->prev = item;
             }
         }
-        
     }
 };
 
@@ -78,5 +75,4 @@ struct SYM {
   char ch;
   int prior;
 };
-
 #endif  // INCLUDE_TPQUEUE_H_
