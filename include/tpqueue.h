@@ -9,7 +9,7 @@ class TPQueue {
 
  private:
       struct Item {
-        T DATA;
+        T data;
         Item* next;
         Item* prev;
       };
@@ -17,7 +17,7 @@ class TPQueue {
     Item* tail = nullptr;
     TPQueue::Item* create(const T& data) {
         Item* temp = new Item;
-        temp->DATA = data;
+        temp->data = data;
         temp->next = nullptr;
         temp->prev = nullptr;
         return temp;
@@ -35,11 +35,11 @@ class TPQueue {
         T n;
         if (temp) {
             temp->prev = nullptr;
-            n = head->DATA;
+            n = head->data;
             delete head;
             head = temp;
         } else {
-            n = head->DATA;
+            n = head->data;
             delete head;
             head = tail = nullptr;
         }
@@ -51,7 +51,7 @@ class TPQueue {
         if (isEmpty()) {
             head = tail = create(data);
         } else {
-            while (t && t->DATA.prior >= DATA.prior)
+            while (t && t->data.prior >= data.prior)
                 t = t->next;
             if (!t && head) {// в конец
                 tail->next = item;
